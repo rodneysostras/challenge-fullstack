@@ -1,0 +1,8 @@
+{
+    "name": "Challenge fullstack verzel",
+    "service": "challenge-verzel",
+    "workspaceFolder": "/dev/app",
+    "dockerComposeFile": "../docker/docker-compose.yml",
+    "shutdownAction": "stopCompose",
+    "forwardPorts": [3000, 8000],
+}

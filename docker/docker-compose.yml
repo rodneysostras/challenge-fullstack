@@ -1,0 +1,13 @@
+version: '3.7'
+services:
+  challenge-verzel:
+    build: .
+    container_name: challenge-fullstack-verzel
+    ports:
+      - "3000"
+      - "8000"
+    stdin_open: true
+    volumes:
+       - ../:/dev/app
+       - ../frontend/node_modules
+    working_dir: /dev/app
