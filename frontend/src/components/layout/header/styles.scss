@@ -1,0 +1,26 @@
+.header-layout {
+    background-color: var(--color-primary);
+    
+    section{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 50px;
+        padding: 1rem;
+
+        nav.menu {
+            li {
+                display: inline-block;
+            }
+
+            li + li {
+                margin-left: 0.675rem;
+            }
+        }
+
+        a {
+            color: var(--color-secondary) !important;
+            text-transform: uppercase;
+        }
+    }
+}
