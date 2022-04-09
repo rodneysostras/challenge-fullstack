@@ -1,0 +1,41 @@
+version: '3.7'
+services:
+  verzel-frontend:
+    build: ./frontend
+    container_name: verzel-frontend
+    ports:
+      - "3000:3000"
+    stdin_open: true
+    volumes:
+       - ./frontend/:/dev/app/frontend/
+       - ./frontend/node_modules
+    working_dir: /dev/app/frontend
+    depends_on:
+      - verzel-backend
+
+  verzel-backend:
+    build: ./backend
+    container_name: verzel-beckend
+    ports:
+      - "8000:8000"
+    stdin_open: true
+    volumes:
+       - ./backend:/dev/app/backend/
+    working_dir: /dev/app/backend
+    depends_on:
+      - verzeldb
+
+  verzeldb:
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'verzeldb'
+      MYSQL_USER: 'verzel'
+      MYSQL_PASSWORD: '1234'
+      MYSQL_ROOT_PASSWORD: 'password'
+    ports:
+      - "3306:3306"
+    volumes:
+      - "dbdata:/var/lib/mysql"
+volumes:
+  dbdata:

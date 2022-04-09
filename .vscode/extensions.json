@@ -3,6 +3,8 @@
         "dbaeumer.vscode-eslint",
         "esbenp.prettier-vscode",
         "dsznajder.es7-react-js-snippets",
-        "editorconfig.editorconfig"
+        "editorconfig.editorconfig",
+        "ms-python.python",
+        "batisteo.vscode-django"
     ]
 }

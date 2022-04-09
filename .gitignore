@@ -1,6 +1,13 @@
 .DS_Store
 node_modules
 dist
+build
+dbdata
+
+*.py[co]
+.tox/
+__pycache__
+MANIFEST
 
 # local env files
 .env*
