@@ -1,12 +1,15 @@
 from django.urls import path, include
-from modulo.views import ModuloViewSet
 from rest_framework import routers
 
+from aula.views import AulaViewSet
+from modulo.views import ModuloViewSet
+
 router = routers.DefaultRouter()
-router.register(r'modulo', ModuloViewSet)
+router.register(r'modulo', ModuloViewSet, basename="ModuloModel")
+router.register(r'aula', AulaViewSet)
 
 urlpatterns = [
-    path('', include(router.urls)),
+    path('api/', include(router.urls)),
     path('ping', include('ping.urls')),
 ]
 

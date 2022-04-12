@@ -15,7 +15,7 @@ services:
 
   verzel-backend:
     build: ./backend
-    container_name: verzel-beckend
+    container_name: verzel-backend
     ports:
       - "8000:8000"
     stdin_open: true
