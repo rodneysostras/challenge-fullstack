@@ -43,17 +43,15 @@ a {
 }
 
 #root {
-    display:flex;
-    align-items: stretch;
-    flex-direction: column;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr auto;
 }
 
 .layout-wrap,
 .layout-container {
     width: 100%;
 }
-
 
 @media (min-width: 600px) {
     .layout-container {

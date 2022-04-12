@@ -1,0 +1,24 @@
+.breadcrumbs{
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem;
+    font-weight: bold;
+    list-style: none;
+    padding: 1.5rem 0;
+
+    li {
+        & + li::before {
+            content: '/';
+            margin-right: .5rem;
+        }
+
+        a {
+            color: #999!important;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+
+}
