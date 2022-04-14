@@ -3,6 +3,8 @@ import Card from '../../components/card'
 
 import ModuloService from '../../services/modulo-service'
 
+import ImgBook from '../../assets/img/book.svg'
+
 import './styles.scss'
 
 export default function HomePage() {
@@ -13,14 +15,20 @@ export default function HomePage() {
             .then((data) => setModulos(data))
     }, [])
 
+    const detailCard = (text) => {
+        return (<p>Quantidade de aulas: {text}</p>)
+    }
+
     return (
             <section className="page__home">
                 <ul>
                     { modulos.map((mod, idx) => (
                         <li key={idx}>
                             <Card
+                                icon={ImgBook}
                                 title={mod.nome}
-                                detail={mod.qtd_aulas}
+                                detail={detailCard(mod.qtd_aulas)}
+                                actionTitle="Veja as aulas"
                                 url={`/modulo/${mod.modulo_id}`}
                             />
                         </li>

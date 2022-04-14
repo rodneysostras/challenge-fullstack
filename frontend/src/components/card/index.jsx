@@ -3,17 +3,17 @@ import ImgBook from '../../assets/img/book.svg'
 
 import './style.scss'
 
-function Card({ url, title, detail }) {
+function Card({ actionTitle, icon, url, title, detail }) {
     return (
         <div className="card">
             <div className="card__header">
-                <img src={ImgBook} />
+                <img src={icon} className="card__header_icon" />
                 <div className="card__header__info">
                     <h3>{ title }</h3>
-                    <p>Total de aulas: { detail }</p>
+                    { detail }
                 </div>
             </div>
-            <Link to={url}>Veja as aulas</Link>
+            <Link to={url}>{ actionTitle }</Link>
         </div>
     )
 }
