@@ -6,7 +6,7 @@ from modulo.views import ModuloViewSet
 
 router = routers.DefaultRouter()
 router.register(r'modulo', ModuloViewSet, basename="ModuloModel")
-router.register(r'aula', AulaViewSet)
+router.register(r'aula', AulaViewSet, basename="AulaModel")
 
 urlpatterns = [
     path('api/', include(router.urls)),

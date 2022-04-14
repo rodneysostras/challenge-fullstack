@@ -1,0 +1,34 @@
+.page__aula {
+    .page__aula__content {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: .725rem;
+        padding: 1rem;
+        list-style: none;
+
+        & > li {
+            width: 100%;
+            max-width: 384px;
+        }
+    }
+
+
+    & > small {
+        display: block;
+        text-align: center;
+    }
+
+    .page__aula__actions {
+        padding: 0 1rem 0;
+        font-weight: bold;
+
+       & > li {
+           list-style: none;
+            & > a {
+                display: inline-flex;
+                gap: .5rem;
+            }
+        }
+    }
+}
