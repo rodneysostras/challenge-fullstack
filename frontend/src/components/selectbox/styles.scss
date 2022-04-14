@@ -1,0 +1,25 @@
+.selectbox {
+    position: relative;
+    display: block;
+    margin-top: 1rem;
+    border-radius: .5rem;
+    border: 1px solid #e3e3e3;
+    background-color: #fff;
+
+    &.disabled {
+        border-color: #f3f3f3;
+        background-color: #f3f3f3;
+    }
+
+    span {
+        position: absolute;
+        top: 0;
+        left: .75rem;
+        font-size: 1em;
+        font-weight: bold;
+        border: 0;
+        border-color: inherit;
+        transform: translateY(-0.725rem);
+        transition: all .3s ease-out;
+    }
+}
