@@ -1,14 +1,12 @@
 from rest_framework import serializers
 
 from modulo.models import ModuloModel
+from aula.serializer import AulaShortSerializer
 
 class ModuloSerializer(serializers.ModelSerializer):
-    # aulas = serializers.SlugRelatedField(many=True, read_only=True, slug_field='nome')
-    # aulas = serializers.RelatedField(many=True, read_only=True)
-
     class Meta:
         model = ModuloModel
-        fields = ('modulo_id', 'modulo_uuid', 'nome', 'created_at')
+        fields = ('modulo_id', 'nome')
 
     def to_representation(self, instance):
         representation = super().to_representation(instance)
@@ -22,8 +20,8 @@ class ModuloShortSerializer(serializers.ModelSerializer):
         fields = ('modulo_id', 'nome')
 
 class ModuloFullSerializer(serializers.ModelSerializer):
-    aulas = serializers.SlugRelatedField(many=True, read_only=True, slug_field='nome')
+    aulas = AulaShortSerializer(many=True)
 
     class Meta:
         model = ModuloModel
-        fields = ('__all__')
+        fields = ('modulo_id', 'nome', 'aulas')
