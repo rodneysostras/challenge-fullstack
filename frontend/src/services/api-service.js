@@ -2,9 +2,7 @@ import axios from 'axios'
 
 import { API_ENDPOINT_VERZEL } from '../settings'
 
-export class VerzelAPIServices {
-    __URL_API_MODULO = "/api/modulo/"
-
+export class APIService {
     constructor(apiEndpoint) {
         this.__instance = axios.create({
             baseURL: apiEndpoint,
@@ -14,16 +12,28 @@ export class VerzelAPIServices {
         })
     }
 
-    setAuthToken(token) {
-        this._instance.defaults.headers.common['Authorization'] = 'Bearer ' + token
+    get(url, params = {}) {
+        return this.request('GET', url, params)
     }
 
-   async request({ method, url, data, params }) {
+    post(url, body) {
+        return this.request('POST', url, body)
+    }
+
+    put(url, body) {
+        return this.request('PUT', url, body)
+    }
+
+    delete(url, params = {}) {
+        return this.request('DELETE', url, params)
+    }
+
+    request(method, url, data) {
        const TREATED_PARAMS = {
            url,
            method,
-           params,
-           data,
+           params: method === 'GET' ? data : null,
+           data: method === 'POST' || method === 'PUT' ? data : null,
        }
 
        return new Promise((resolver, reject) => {
@@ -32,13 +42,7 @@ export class VerzelAPIServices {
                 .catch(( { response } ) => reject(response))
        })
    }
-
-   async getModulo(id = '') {
-       return this.request({
-           method: 'GET',
-           url: this.__URL_API_MODULO + id,
-       })
-   }
 }
 
-export default new VerzelAPIServices(API_ENDPOINT_VERZEL)
+
+export default new APIService(API_ENDPOINT_VERZEL)

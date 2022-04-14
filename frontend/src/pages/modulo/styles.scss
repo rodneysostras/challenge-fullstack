@@ -1,13 +1,6 @@
-.page__modulo {
-    flex: 1 1 auto;
-    padding: 1rem;
+.page__modulo__wrap {
 
-    a {
-        font-size: 1rem;
-        font-weight: bold;
-    }
-
-    .page__modulo__wrap {
+    .page__modulo_content {
         border: 1px solid #3f3f3f30;
         border-radius: 1rem;
         overflow: hidden;
@@ -39,5 +32,20 @@
             border: 1px solid #3f3f3f30;
         }
 
+        & > span {
+            display: block;
+            padding: 1rem;
+            font-weight: bold;
+            text-align: center;
+            color: red;
+        }
+    }
+
+
+    .actions-container {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-top: 1rem;
     }
 }

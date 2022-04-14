@@ -1,7 +1,7 @@
 import React from 'react'
 import Card from '../../components/card'
 
-import verzelService from '../../services/verzel-service'
+import ModuloService from '../../services/modulo-service'
 
 import './styles.scss'
 
@@ -9,7 +9,7 @@ export default function HomePage() {
     const [modulos, setModulos] = React.useState([])
 
     React.useEffect(() => {
-        verzelService.getModulo()
+        ModuloService.list()
             .then((data) => setModulos(data))
     }, [])
 

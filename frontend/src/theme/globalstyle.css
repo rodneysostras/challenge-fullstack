@@ -39,7 +39,35 @@ body {
 
 a {
     text-decoration: none;
-    color: var(--text-color);
+    color: inherit;
+}
+.button,
+button {
+    display: block;
+    height: 42px;
+    width: 100%;
+    max-width: 8rem;
+    padding: .5rem;
+    margin: 0;
+    border: 0;
+    border-radius: .5rem;
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+    color: var(--color-primary);
+    background-color: var(--color-secondary);
+    cursor: pointer;
+}
+.button:not(:disabled):hover,
+button:not(:disabled):hover {
+    transform: scale(1.1);
+}
+
+.button:disabled,
+button:disabled {
+    color: #fff;
+    background-color: #8e8e8e;
+    cursor: no-drop;
 }
 
 #root {
@@ -59,4 +87,10 @@ a {
         max-width: 1280px;
         margin: 0 auto;
     }
+}
+
+.btn-delete {
+    border: 1px solid red;
+    background-color: transparent;
+    color: red;
 }
