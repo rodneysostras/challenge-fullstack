@@ -81,12 +81,9 @@ button:disabled {
     width: 100%;
 }
 
-@media (min-width: 600px) {
-    .layout-container {
-        width: 83.33%;
-        max-width: 1280px;
-        margin: 0 auto;
-    }
+.layout-container {
+    max-width: 1280px;
+    margin: 0 auto;
 }
 
 .btn-delete {

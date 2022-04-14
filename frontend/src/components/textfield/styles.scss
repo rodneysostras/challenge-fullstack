@@ -1,7 +1,7 @@
 .textfield {
     position: relative;
     display: block;
-    margin-top: .5rem;
+    margin-top: 1rem;
     border-radius: .5rem;
     border: 0;
     border-color: #fff;
@@ -62,8 +62,4 @@
     input:not(:placeholder-shown) + span {
         transform: translateY(-0.725rem);
     }
-}
-
-.textfield + .textfield {
-    margin-top: 1rem;
 }
