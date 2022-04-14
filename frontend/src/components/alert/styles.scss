@@ -1,0 +1,41 @@
+.alert {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    font-weight: bold;
+    border-radius: .5rem;
+    overflow: hidden;
+    border: 1px solid #0000001f;
+
+    &.error {
+        border: 1px solid #dc3545!important;
+        background-color: #ff5252;
+        color: #fff;
+    }
+
+    &.success {
+        border: 1px solid #4caf50!important;
+        background-color:#eaf6ea;
+        color: #4caf50;
+    }
+
+    span {
+        width: 100%;
+        padding: .2rem;
+        text-align: center;
+        text-transform: uppercase;
+        background-color: #0000001f;
+    }
+
+    ol {
+        padding: .5rem;
+        margin-left: 2rem;
+        list-style: none;
+    }
+}
+
+.alert + .alert {
+    margin-top: 1rem;
+}

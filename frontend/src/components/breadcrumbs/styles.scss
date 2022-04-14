@@ -5,20 +5,20 @@
     font-weight: bold;
     list-style: none;
     padding: 1.5rem 0;
+    text-transform: uppercase;
 
     li {
+        &:not(:last-child) {
+            color: #999!important;
+        }
+
         & + li::before {
             content: '/';
             margin-right: .5rem;
         }
 
-        a {
-            color: #999!important;
-
-            &:hover {
-                text-decoration: underline;
-            }
+        a:hover {
+            text-decoration: underline;
         }
     }
-
 }
