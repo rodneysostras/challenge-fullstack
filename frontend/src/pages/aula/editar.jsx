@@ -1,6 +1,8 @@
 import React from 'react'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 
+import useAuth from '../../hooks/auth-hooks'
+
 import Alert from '../../components/alert'
 import LayoutPage from '../../components/layout/page'
 import Modal from  '../../components/modal'
@@ -10,12 +12,11 @@ import Selectbox from '../../components/selectbox'
 import AulaService from '../../services/aula-service'
 import ModuloService from '../../services/modulo-service'
 
-// import './styles-shared.scss'
-
 export default function EditarAulaPage() {
     const { id } = useParams()
     const navegate = useNavigate()
     const location = useLocation()
+    const { signed } = useAuth()
     const [ buttonDisabled, setButtonDisabled ] = React.useState(true)
     const [ showModal, setShowModal ] = React.useState(false)
     const [ aula, setAula ] = React.useState({})
@@ -41,13 +42,13 @@ export default function EditarAulaPage() {
 
     const handleDelete = () => {
         ModuloService.delete(id)
-            .then(() => navegate("/aula/listar"))
+            .then(() => navegate("/aula"))
             .catch((err) => {
                 if(err.status === 401) {
-                    navegate("/auth")
+                    navegate("/login")
                 }
 
-                setError( {"APAGAR": [err.data.detail]} )
+                setError( {"APAGAR": err.data.detail} )
                 setShowModal(false)
             })
     }
@@ -142,7 +143,7 @@ export default function EditarAulaPage() {
                 <p> Deseja apagar o aula: <b>{ `${aula.aula_id} - ${aula.nome}` }</b> ?</p>
                 <div className="actions-container">
                     <button className="btn-delete" onClick={handleDelete}>APAGAR</button>
-                    <button onClick={() => setShowModal(false)}>CANCELAR</button>
+                    <button onClick={() => setShowModal(false)} disabled={!signed}>{ !signed &&'🔒' } CANCELAR</button>
                 </div>
             </Modal>
         </LayoutPage>

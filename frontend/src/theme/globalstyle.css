@@ -57,17 +57,20 @@ button {
     color: var(--color-primary);
     background-color: var(--color-secondary);
     cursor: pointer;
+    user-select: none;
 }
 .button:not(:disabled):hover,
 button:not(:disabled):hover {
     transform: scale(1.1);
 }
 
-.button:disabled,
+.button.disabled,
 button:disabled {
+    border-color: #3e3e3e !important;
     color: #fff !important;
     background-color: #8e8e8e !important;
     cursor: no-drop;
+    pointer-events: none;
 }
 
 #root {
@@ -90,4 +93,11 @@ button:disabled {
     border: 1px solid red;
     background-color: transparent;
     color: red;
+}
+
+.actions-container{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1rem;
 }

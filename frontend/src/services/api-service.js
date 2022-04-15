@@ -35,7 +35,7 @@ export class APIService {
     }
 
     request(method, url, data) {
-        const TOKEN = this.__tokenService.getToken('authToken')
+        const TOKEN = this.__tokenService.getToken()
         const TREATED_PARAMS = {
             url,
             method,

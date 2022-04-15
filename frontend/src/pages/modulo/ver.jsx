@@ -1,5 +1,7 @@
 import React from 'react'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
+
+import useAuth from '../../hooks/auth-hooks'
 
 import PageLayout from '../../components/layout/page'
 import Modal from '../../components/modal'
@@ -11,6 +13,7 @@ import './styles-ver.scss'
 export default function ModuloPage() {
     const { id } = useParams()
     const navegate = useNavigate()
+    const { signed } = useAuth()
     const [modulo, setModulo] = React.useState({})
     const [ showModal, setShowModal ] = React.useState(false)
 
@@ -70,8 +73,8 @@ export default function ModuloPage() {
             <Modal title="APAGAR MODULO" show={showModal}>
                 <p> Deseja apagar o modulo: <b>{ `${modulo.modulo_id} - ${modulo.nome}` }</b> ?</p>
                 <div className="actions-container">
-                    <button className="btn-delete" onClick={handleDelete}>APAGAR</button>
-                    <button onClick={() => setShowModal(false)}>CANCELAR</button>
+                    <button className="btn-delete" onClick={handleDelete} disabled={!signed}>{ !signed &&'🔒' } APAGAR</button>
+                    <button onClick={() => setShowModal(false)}> CANCELAR</button>
                 </div>
             </Modal>
         </PageLayout>

@@ -1,37 +1,32 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
 
 import Textfield from '../textfield'
 
-import AuthService from '../../services/auth-service'
+import useAuth from '../../hooks/auth-hooks'
 
 import './styles.scss'
 
 export default function LoginModal() {
-    const navigate = useNavigate()
-    const [login, setLogin] = React.useState({})
+    const { login } = useAuth()
+    const [auth, setAuth] = React.useState({})
     const [error, setError] = React.useState("")
     const [buttonDisabled, setButtonDisabled] = React.useState(true)
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         setButtonDisabled(true)
 
-        AuthService.login( login.username, login.password )
-            .then(() => navigate("/"))
-            .catch((err) => {
-                if (err.status === 401) {
-                    setError("Usuário ou senha ínvalido")
-                } else {
-                    setError(err.data)
-                }
-            })
+        login(auth.username, auth.password, (c) => {
+            if(c.error) {
+                setError(c.error)
+            }
+        })
     }
 
     const handleChange = (event) => {
         const name = event.target.name
         const value = event.target.value
 
-        setLogin((state) => {
+        setAuth((state) => {
             return { ...state, [name]: value }
         })
 

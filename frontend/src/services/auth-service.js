@@ -22,18 +22,17 @@ export class AuthService{
     isAuthenticated() {
         const TOKEN = this.__tokenService.getToken()
 
-        if (TOKEN && TOKEN.lifetime && TOKEN.refresh) {
-            if(TOKEN.lifetime < Date.now()) {
-                const body = JSON.stringify({ refresh: TOKEN.refresh })
+        if (TOKEN && TOKEN.refresh && !TOKEN.access) {
+            const body = JSON.stringify({ refresh: TOKEN.refresh })
 
-                this.__apiService
-                    .post('/auth/refresh-token', body)
-                    .then((data) => {
-                        const TREATED_TOKEN = { ...TOKEN, ...data }
-                        this.__tokenService.setToken(TREATED_TOKEN)
-                    })
-                    .catch(() => this.__tokenService.clearToken())
-            }
+            this.__apiService
+                .post('/auth/refresh-token', body)
+                .then((data) => {
+                    const TREATED_TOKEN = { ...TOKEN, ...data }
+                    this.__tokenService.setToken(TREATED_TOKEN)
+                    TOKEN = true
+                })
+                // .catch(() => this.__tokenService.clearToken())
         }
 
         return !!TOKEN

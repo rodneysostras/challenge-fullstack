@@ -13,6 +13,7 @@ export default function EditarModuloPage() {
     const { id } = useParams()
     const navegate = useNavigate()
     const location = useLocation()
+    const { signed } = useAuth
     const [ buttonDisabled, setButtonDisabled ] = React.useState(true)
     const [ showModal, setShowModal ] = React.useState(false)
     const [ modulo, setModulo ] = React.useState({})
@@ -101,7 +102,7 @@ export default function EditarModuloPage() {
                 <p> Deseja apagar o modulo: <b>{ `${modulo.modulo_id} - ${modulo.nome}` }</b> ?</p>
                 <div className="actions-container">
                     <button className="btn-delete" onClick={handleDelete}>APAGAR</button>
-                    <button onClick={() => setShowModal(false)}>CANCELAR</button>
+                    <button onClick={() => setShowModal(false)}> CANCELAR</button>
                 </div>
             </Modal>
         </LayoutModuloPage>

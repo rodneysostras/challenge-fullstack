@@ -9,12 +9,13 @@ export class StorageService {
     }
 
     clear(regexp) {
-        Object.keys(localStorage).map((keys) => {
-            if (regexp) {
-                keys = keys.filter( k => regexp.test(k))
+        Object.keys(localStorage).map((key) => {
+            if (regexp && regexp.test(key)) {
+                localStorage.removeItem(key)
+            } else {
+                localStorage.removeItem(key)
             }
 
-            keys.forEach((k) => localStorage.removeItem(k))
         })
     }
 }

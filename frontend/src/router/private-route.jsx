@@ -1,8 +1,15 @@
-import { Navigate, Outlet } from "react-router-dom"
+import { Navigate, Outlet, useLocation } from "react-router-dom"
 
-import AuthService from '../services/auth-service'
+import useAuth from '../hooks/auth-hooks'
 
 export default function PrivateRoute() {
-    const isLogged = AuthService.isAuthenticated()
-    return isLogged ? <Outlet /> : <Navigate to="/login" />
+    const location = useLocation()
+    const { signed } = useAuth()
+    return signed ?
+        <Outlet />:
+        <Navigate
+            to="/login"
+            replace={true}
+            state={{ previous: location.pathname }}
+        />
 }

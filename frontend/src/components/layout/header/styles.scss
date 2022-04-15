@@ -12,6 +12,10 @@
         nav.menu {
             li {
                 display: inline-block;
+                & > a {
+                    color: var(--color-secondary);
+                    cursor: pointer;
+                }
             }
 
             li + li {

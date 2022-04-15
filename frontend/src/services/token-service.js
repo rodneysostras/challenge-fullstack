@@ -6,7 +6,15 @@ export class TokenService {
     }
 
     getToken() {
-        return this.__storageService.get('app/token')
+        const TOKEN =  this.__storageService.get('app/token')
+
+        if(TOKEN && TOKEN.lifetime) {
+            if (TOKEN.lifetime < Date.now()) {
+                return { refresh: TOKEN.refresh }
+            }
+        }
+
+        return TOKEN
     }
 
     setToken(value) {
@@ -22,7 +30,7 @@ export class TokenService {
     }
 
     clearToken() {
-        return this.__storageService.clear('app/token')
+        return this.__storageService.clear()
     }
 }
 const tokenService = new TokenService(StorageService)

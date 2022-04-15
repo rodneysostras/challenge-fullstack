@@ -1,18 +1,20 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
+
+import useAuth from '../../hooks/auth-hooks'
 
 import LayoutPage from '../../components/layout/page'
 import Textfield from '../../components/textfield'
 import Alert from '../../components/alert'
-
-import AuthService from '../../services/auth-service'
 
 import './styles.scss'
 
 export default function LoginPage() {
     const navigation = [{"home": "/"}, "login"]
     const navigate = useNavigate()
-    const [ login, setLogin ] = React.useState({})
+    const location = useLocation()
+    const { signed, login } = useAuth()
+    const [ auth, setAuth ] = React.useState({})
     const [ buttonDisabled, setButtonDisabled ] = React.useState(true)
     const [ error, setError ] = React.useState()
 
@@ -20,22 +22,24 @@ export default function LoginPage() {
         e.preventDefault()
         setButtonDisabled(true)
 
-        AuthService.login( login.username, login.password )
-            .then((d) => navigate("/"))
-            .catch((err) => {
-                if (err.status === 401) {
+        login(auth.username, auth.password, (c) => {
+            if (c.error) {
+                if (c.error.status === 401) {
                     setError("Usuário ou senha ínvalido")
                 } else {
-                    setError(err.data)
+                    setError(error)
                 }
-            })
+            } else {
+                navigate(location.state?.previous || "/", { replace: true })
+            }
+        })
     }
 
     const handleChange = (event) => {
         const name = event.target.name
         const value = event.target.value
 
-        setLogin((state) => {
+        setAuth((state) => {
             return { ...state, [name]: value }
         })
         if(buttonDisabled) {
@@ -43,6 +47,12 @@ export default function LoginPage() {
             setButtonDisabled(false)
         }
     }
+
+    React.useEffect(() => {
+        if (signed) {
+            navigate("/", { replace: true })
+        }
+    }, [])
 
     return (
         <LayoutPage
@@ -60,14 +70,14 @@ export default function LoginPage() {
                     name="username"
                     placeholder="Usuário"
                     onChange={handleChange}
-                    requered
+                    required
                 />
                 <Textfield
                     type="password"
                     name="password"
                     placeholder="Senha"
                     onChange={handleChange}
-                    requered
+                    required
                 />
                 <button
                     type="submit"
