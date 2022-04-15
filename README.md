@@ -21,7 +21,7 @@
     <a href="#-recursos">Recursos</a> •
     <a href="#-como-executar-o-projeto">Como executar</a> •
     <a href="#-tecnologias">Tecnologias</a> •
-    <a href="#-autor">Autor</a> • 
+    <a href="#-autor">Autor</a> •
 <!--     <a href="#-creditos">Creditos</a> •  -->
     <a href="#-licença">Licença</a>
 </p>
@@ -32,7 +32,7 @@
 
 <br />
 
-<div align="center"><img src="https://cdn.rawgit.com/rodneysostras/rodneysostras/main/assets/img/under-construction.png" alt="previewer" height="300em"/></div>
+<!-- <div align="center"><img src="https://cdn.rawgit.com/rodneysostras/rodneysostras/main/assets/img/under-construction.png" alt="previewer" height="300em"/></div> -->
 
 <div align="center">
     <em>
@@ -54,6 +54,8 @@ Sua base de dados persistente e o MySQL um banco de dados relacional.
 <p dir="auto">Uma challenge realizada para testar meus conhecimentos tendo que comprir os requisitos abaixo.</p>
 </blockquote>
 
+> Branch da entrega '[challenge](https://github.com/rodneysostras/challenge-fullstack-verzel/tree/challenge)'
+
 ## 🎯 Requisitos
 
 - [ ] Back-end deverá ser uma API Rest
@@ -63,8 +65,8 @@ Sua base de dados persistente e o MySQL um banco de dados relacional.
     - [ ] Ao selecionar o módulos exibir as aulas deles
 - [ ] As páginas de cadastro deve esta seguras e só acessar após login autenticado
 - [ ] Todas as requisições privadas precisam de um tokem válido gerado no login
-- [ ] Módulos 
-  - [ ] Devem ter os atributos; ID e Nome 
+- [ ] Módulos
+  - [ ] Devem ter os atributos; ID e Nome
   - [ ] Deverá ter listagem, criação, edição e deleção de registros
   - [ ] Devem contabilizar o total de aulas referente
   - [ ] Devem esta ordenados por ordem alfabética
@@ -159,5 +161,5 @@ Este projeto esta sobe a licença [MIT](./LICENSE).
 Feito com ❤️ por Rodney Sostras 👋🏽 [Entre em contato!](https://www.linkedin.com/in/rodney-sostras/)
 
 <br />
-        
+
 <div align="right"><a href="#">Voltar ao topo ⬆</a></div>
