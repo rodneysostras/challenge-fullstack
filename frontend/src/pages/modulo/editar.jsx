@@ -1,6 +1,8 @@
 import React from 'react'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 
+import useAuth from '../../hooks/auth-hooks'
+
 import Alert from '../../components/alert'
 import Modal from  '../../components/modal'
 import TextField from '../../components/textfield'
@@ -13,7 +15,7 @@ export default function EditarModuloPage() {
     const { id } = useParams()
     const navegate = useNavigate()
     const location = useLocation()
-    const { signed } = useAuth
+    const { signed } = useAuth()
     const [ buttonDisabled, setButtonDisabled ] = React.useState(true)
     const [ showModal, setShowModal ] = React.useState(false)
     const [ modulo, setModulo ] = React.useState({})
