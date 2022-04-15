@@ -1,12 +1,20 @@
 from django.http import Http404
 from rest_framework import viewsets, status
 from rest_framework.response import Response
-
+from rest_framework.permissions import AllowAny, IsAuthenticated
 
 from modulo.models import ModuloModel
 from modulo.serializer import ModuloSerializer, ModuloFullSerializer
 
 class ModuloViewSet(viewsets.ViewSet):
+    def get_permissions(self):
+        if self.request.method == 'GET':
+            self.permission_classes = [AllowAny]
+        else:
+            self.permission_classes = [IsAuthenticated]
+
+        return super(ModuloViewSet, self).get_permissions()
+
     def get_object(self, pk=None):
         try:
             return ModuloModel.objects.get(pk=pk)
@@ -47,8 +55,3 @@ class ModuloViewSet(viewsets.ViewSet):
         modulo.delete()
 
         return Response(status=status.HTTP_204_NO_CONTENT)
-
-
-
-
-

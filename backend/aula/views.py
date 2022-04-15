@@ -1,11 +1,21 @@
 from django.http import Http404
 from rest_framework import viewsets, status
 from rest_framework.response import Response
+from rest_framework.permissions import AllowAny, IsAuthenticated
 
 from aula.models import AulaModel
 from aula.serializer import AulaSerializer
 
 class AulaViewSet(viewsets.ViewSet):
+
+    def get_permissions(self):
+        if self.request.method == 'GET':
+            self.permission_classes = [AllowAny]
+        else:
+            self.permission_classes = [IsAuthenticated]
+
+        return super(AulaViewSet, self).get_permissions()
+
     def get_object(self, pk=None):
         try:
             return AulaModel.objects.get(pk=pk)
@@ -46,8 +56,3 @@ class AulaViewSet(viewsets.ViewSet):
         Aula.delete()
 
         return Response(status=status.HTTP_204_NO_CONTENT)
-
-
-
-
-
