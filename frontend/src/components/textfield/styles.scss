@@ -22,6 +22,7 @@
         border-color: inherit;
         transform: translateY(1rem);
         transition: all .3s ease-out;
+        pointer-events: none;
 
         &::after{
             content: '';
