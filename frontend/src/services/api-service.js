@@ -1,13 +1,19 @@
 import axios from 'axios'
 
+import TokenService from './token-service'
+
 import { API_ENDPOINT_VERZEL } from '../settings'
 
 export class APIService {
-    constructor(apiEndpoint) {
+    constructor(apiEndpoint, tokenService) {
+        this.__tokenService = tokenService
         this.__instance = axios.create({
             baseURL: apiEndpoint,
+            xsrfCookieName: 'csrftoken',
+            xsrfHeaderName: 'X-CSRFTOKEN',
             headers: {
                 'Content-Type': 'application/json',
+                accept: 'application/json',
             }
         })
     }
@@ -29,20 +35,25 @@ export class APIService {
     }
 
     request(method, url, data) {
-       const TREATED_PARAMS = {
-           url,
-           method,
-           params: method === 'GET' ? data : null,
-           data: method === 'POST' || method === 'PUT' ? data : null,
-       }
+        const TOKEN = this.__tokenService.getToken('authToken')
+        const TREATED_PARAMS = {
+            url,
+            method,
+            params: method === 'GET' ? data : null,
+            data: method === 'POST' || method === 'PUT' ? data : null,
+        }
 
-       return new Promise((resolver, reject) => {
-           this.__instance.request(TREATED_PARAMS)
+        if (TOKEN && TOKEN.access) {
+            TREATED_PARAMS['headers'] = { Authorization: 'Bearer ' + TOKEN.access }
+        }
+
+        return new Promise((resolver, reject) => {
+            this.__instance.request(TREATED_PARAMS)
                 .then(( { data } ) => resolver(data))
                 .catch(( { response } ) => reject(response))
-       })
+        })
    }
 }
 
-
-export default new APIService(API_ENDPOINT_VERZEL)
+const apiService = new APIService(API_ENDPOINT_VERZEL, TokenService)
+export default apiService

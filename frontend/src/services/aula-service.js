@@ -26,4 +26,5 @@ export class AulaService{
     }
 }
 
-export default new AulaService(APIService)
+const aulaService = new AulaService(APIService)
+export default aulaService

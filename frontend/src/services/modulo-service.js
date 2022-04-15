@@ -26,4 +26,5 @@ export class ModuloService{
     }
 }
 
-export default new ModuloService(APIService)
+const moduloService = new ModuloService(APIService)
+export default moduloService

@@ -1,31 +1,33 @@
-import { Navigate, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
-import HomePage from '../pages/home'
+import PrivateRoute from './private-route'
+
 import E404Page from '../pages/e404'
+import HomePage from '../pages/home'
+import LoginPage from '../pages/login'
 
 import ModuloPage from '../pages/modulo'
-import NovoModuloPage from "../pages/modulo/novo";
-import EditarModuloPage from "../pages/modulo/editar";
-
 import AulaPage from '../pages/aula'
 
 export default function Router() {
     return (
         <Routes>
+            <Route index element={ <HomePage/> } />
             <Route path="*" element={ <E404Page/> } />
-            <Route path="/" element={ <HomePage/> } />
             <Route path="/e404" element={ <E404Page/> } />
+            <Route path="/login" element={ <LoginPage /> } />
 
-            <Route path="/modulo" element={ <Navigate to="/" /> } />
-            <Route path="/modulo/novo" element={ <NovoModuloPage /> } />
-            <Route path="/modulo/editar/:id" element={ <EditarModuloPage /> } />
-            <Route path="/modulo/:id" element={ <ModuloPage/> } />
+            <Route path="/modulo" element={ <ModuloPage.List /> } />
+            <Route path="/modulo/:id" element={ <ModuloPage.View/> } />
+            <Route path="/aula" element={ <AulaPage.List /> } />
 
-            <Route path="/aula" element={ <Navigate to="/aula/listar" /> } />
-            <Route path="/aula/listar" element={ <AulaPage.List /> } />
-            <Route path="/aula/novo/" element={ <AulaPage.New /> } />
-            <Route path="/aula/editar/:id" element={ <AulaPage.Edit /> } />
+            <Route element={ <PrivateRoute /> }>
+                <Route path="/modulo/editar/:id" element={ <ModuloPage.Edit /> } />
+                <Route path="/modulo/novo" element={ <ModuloPage.New /> } />
 
+                <Route path="/aula/editar/:id" element={ <AulaPage.Edit /> } />
+                <Route path="/aula/novo/" element={ <AulaPage.New /> } />
+            </Route>
         </Routes>
     )
 }

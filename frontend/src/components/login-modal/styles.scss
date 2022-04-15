@@ -1,0 +1,65 @@
+.login-modal {
+    #login-modal {
+        height: 0;
+        width: 0;
+
+        &:checked::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background-color: #00000040;
+        }
+    }
+
+    #login-modal:checked ~ .login-modal-title {
+        background-color: var(--color-secondary);
+        color: var(--color-primary);
+        font-weight: bold;
+    }
+
+    #login-modal:checked ~ .login-modal-content {
+        max-height: 500px;
+        transition: max-height 0.5s ease-out;
+    }
+
+    .login-modal-title {
+        position: relative;
+        padding: 1rem;
+        cursor: pointer;
+        user-select: none;
+        color: var(--color-secondary);
+    }
+
+    .login-modal-content {
+        position: absolute;
+        top: 50px;
+        max-height: 0;
+        width: 230px;
+        transform: translateX(calc(-100% + 80px));
+        background-color: var(--color-secondary);
+        overflow: hidden;
+        transition: max-height 0.5s ease-out;
+
+        form {
+            padding: 1rem;
+        }
+
+        .login-modal-action {
+            background-color: var(--color-primary);
+            color: var(--color-secondary);
+            margin: 0 auto;
+            margin-top: 1rem;
+        }
+
+        .login-modal-error {
+            display: block;
+            margin-top: 1rem;
+            font-weight: bold;
+            text-align: center;
+            color: red;
+        }
+    }
+}

@@ -1,0 +1,18 @@
+.page__login__form {
+    width: 100%;
+    max-width: 380px;
+    margin: 0 auto;
+
+    .page__login__title {
+        margin-bottom: .2rem;
+    }
+
+    .page__login__title + p {
+        margin-bottom: 2rem;
+    }
+
+    .page__login__form__action {
+        margin: 0 auto;
+        margin-top: 1rem;
+    }
+}
