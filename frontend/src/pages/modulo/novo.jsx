@@ -8,9 +8,7 @@ import LayoutModuloPage from '../../components/layout/page'
 
 import ModuloService from '../../services/modulo-service'
 
-import './styles-shared.scss'
-
-export default function EditarModuloPage() {
+export default function CreateModuloPage() {
     const { id } = useParams()
     const navegate = useNavigate()
     const [ buttonDisabled, setButtonDisabled ] = React.useState(true)

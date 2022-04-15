@@ -1,15 +1,13 @@
 import React from 'react'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 
-import TextField from '../../components/textfield'
-import Modal from  '../../components/modal'
 import Alert from '../../components/alert'
+import Modal from  '../../components/modal'
+import TextField from '../../components/textfield'
 
 import LayoutModuloPage from '../../components/layout/page'
 
 import ModuloService from '../../services/modulo-service'
-
-import './styles-shared.scss'
 
 export default function EditarModuloPage() {
     const { id } = useParams()
@@ -23,33 +21,17 @@ export default function EditarModuloPage() {
 
     const navigation = [
         {"inicio": "/"},
-        {"módulo": `/modulo/${id}/`},
-        "editar"
+        {"módulo": "/modulo"},
+        "Editar"
     ]
 
-    React.useEffect(() => {
-        ModuloService.search(id)
-            .then((data) => setModulo(data))
-            .catch((err) => {
-                if(err.status === 404) {
-                    navegate('/e404')
-                }
-            })
-    }, [])
-
     const handleSubmit = () => {
-        const message_sucess = { "editar": ["Modulo editado com sucesso"]}
-
         setButtonDisabled(true)
 
-        ModuloService.edit(id, { nome: modulo.nome } )
-            .then(() => setMessage(message_sucess))
-            .catch(({ data }) => setError(data))
-    }
+        const message_success = {'state': { "novo": ["Registro adicionado com sucesso!"] }}
 
-    const handleDelete = () => {
-        ModuloService.delete(id)
-            .then(() => navegate("/"))
+        ModuloService.edit(modulo.modulo_id, { nome: modulo.nome } )
+            .then((data) => setMessage(message_sucess))
             .catch(({ data }) => setError(data))
     }
 
@@ -60,10 +42,32 @@ export default function EditarModuloPage() {
 
         if (buttonDisabled) {
             setButtonDisabled(false)
-            setMessage({})
             setError({})
         }
     }
+
+    const handleDelete = () => {
+        ModuloService.delete(id)
+            .then(() => navegate("/modulo"))
+            .catch((err) => {
+                if(err.status === 401) {
+                    navegate("/auth")
+                }
+
+                setError( {"APAGAR": [err.data.detail]} )
+                setShowModal(false)
+            })
+    }
+
+    React.useEffect(() => {
+        ModuloService.search(id)
+            .then((data) => setModulo(data))
+            .catch((err) => {
+                if(err.status === 404) {
+                    navegate('/e404')
+                }
+            })
+        },[])
 
     return (
         <LayoutModuloPage
@@ -76,7 +80,6 @@ export default function EditarModuloPage() {
                 onSubmit={(e) => e.preventDefault()}
             >
                 <div className="form__fields">
-                <TextField type="text" placeholder="Modulo ID" defaultValue={modulo.modulo_id} disabled/>
                     <TextField
                         type="text"
                         name="nome"
@@ -85,12 +88,11 @@ export default function EditarModuloPage() {
                         onChange={handleChange}
                         required
                     />
+                    <div className="actions-container">
+                        <button onClick={handleSubmit} disabled={buttonDisabled}>EDITAR</button>
+                        <a className="button btn-delete" onClick={() => setShowModal(true)}>APAGAR</a>
+                    </div>
                 </div>
-                <div className="actions-container">
-                    <button onClick={handleSubmit} disabled={buttonDisabled}>EDITAR</button>
-                    <a className="button btn-delete" onClick={() => setShowModal(true)}>APAGAR</a>
-                </div>
-                <br />
                 { message && (<Alert value={message} success/>) }
                 { error && (<Alert value={error} error/>) }
             </form>
