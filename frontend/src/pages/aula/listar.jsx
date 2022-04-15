@@ -44,7 +44,7 @@ export default function AulaPage() {
         >
             <div className="page__aula">
                 <ul className="page__aula__actions">
-                    <li><Link to="/aula/novo"><img src={ImgPlus}/>Nova Lista</Link></li>
+                    <li><Link to="/aula/novo"><img src={ImgPlus}/>Nova Aula</Link></li>
                 </ul>
                 <ul className="page__aula__content">
                     { aulas && aulas.map((aula, idx) => (

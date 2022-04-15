@@ -40,9 +40,16 @@ export default function EditarAulaPage() {
     }
 
     const handleDelete = () => {
-        AulaService.delete(id)
+        ModuloService.delete(id)
             .then(() => navegate("/aula/listar"))
-            .catch(({ data }) => setError(data))
+            .catch((err) => {
+                if(err.status === 401) {
+                    navegate("/auth")
+                }
+
+                setError( {"APAGAR": [err.data.detail]} )
+                setShowModal(false)
+            })
     }
 
     const handleChange = (event) => {
@@ -58,8 +65,6 @@ export default function EditarAulaPage() {
             setError({})
             setMessage({})
         }
-
-        console.log(aula)
     }
 
     const formatDatetime = (text) => {
@@ -134,7 +139,7 @@ export default function EditarAulaPage() {
             </form>
 
             <Modal title="APAGAR AULA" show={showModal}>
-                <p> Deseja apagar o modulo: <b>{ `${aula.aula_id} - ${aula.nome}` }</b> ?</p>
+                <p> Deseja apagar o aula: <b>{ `${aula.aula_id} - ${aula.nome}` }</b> ?</p>
                 <div className="actions-container">
                     <button className="btn-delete" onClick={handleDelete}>APAGAR</button>
                     <button onClick={() => setShowModal(false)}>CANCELAR</button>

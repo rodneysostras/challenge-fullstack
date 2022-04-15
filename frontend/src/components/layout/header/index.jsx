@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import LoginModal from '../../../components/login-modal'
 
 import './styles.scss'
 
@@ -11,8 +11,7 @@ export default function HeaderLayout() {
                 </a>
                 <nav className='menu'>
                     <ul>
-                        <li><Link to="signin">Entrar</Link></li>
-                        <li><Link to="signup">Cadastrar</Link></li>
+                        <li><LoginModal /></li>
                     </ul>
                 </nav>
             </section>

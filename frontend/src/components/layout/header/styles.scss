@@ -1,12 +1,13 @@
 .header-layout {
+    text-transform: uppercase;
     background-color: var(--color-primary);
-    
-    section{
+
+    & > section{
         display: flex;
         justify-content: space-between;
         align-items: center;
         height: 50px;
-        padding: 1rem;
+        padding: 0 1rem;
 
         nav.menu {
             li {
@@ -16,11 +17,6 @@
             li + li {
                 margin-left: 0.675rem;
             }
-        }
-
-        a {
-            color: var(--color-secondary) !important;
-            text-transform: uppercase;
         }
     }
 }

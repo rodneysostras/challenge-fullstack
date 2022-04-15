@@ -65,8 +65,8 @@ button:not(:disabled):hover {
 
 .button:disabled,
 button:disabled {
-    color: #fff;
-    background-color: #8e8e8e;
+    color: #fff !important;
+    background-color: #8e8e8e !important;
     cursor: no-drop;
 }
 
