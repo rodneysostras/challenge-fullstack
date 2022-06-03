@@ -26,16 +26,16 @@ services:
       - verzeldb
 
   verzeldb:
-    image: mysql
+    image: postgres:13.6-alpine
     restart: always
     environment:
-      MYSQL_DATABASE: 'verzeldb'
-      MYSQL_USER: 'verzel'
-      MYSQL_PASSWORD: '1234'
-      MYSQL_ROOT_PASSWORD: 'password'
+      PGDATA: '/data/postgres'
+      POSTGRES_USER: ${POSTGRES_USER:-verzel}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-1234}
+      POSTGRES_DB: ${POSTGRES_PASSWORD:-verzeldb}
     ports:
-      - "3306:3306"
+      - "5432:5432"
     volumes:
-      - "dbdata:/var/lib/mysql"
+      - "dbdata:/data/postgres"
 volumes:
   dbdata:
