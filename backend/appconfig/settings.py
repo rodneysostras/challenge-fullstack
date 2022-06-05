@@ -14,6 +14,7 @@ from pathlib import Path
 
 import urllib.parse as urlparse
 
+import django_heroku
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -176,3 +177,4 @@ REST_FRAMEWORK = {
 }
 
 CORS_ALLOW_ALL_ORIGINS = True
+django_heroku.settings(locals())
