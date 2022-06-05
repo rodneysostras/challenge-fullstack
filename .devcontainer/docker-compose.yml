@@ -15,8 +15,8 @@ services:
       - "3000:3000"
       - "8000:8000"
     volumes:
-      - ../frontend/node_modules
       - ..:/workspace
+      - /workspace/frontend/node_modules
     depends_on:
       - verzeldb
 
