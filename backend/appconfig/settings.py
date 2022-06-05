@@ -21,27 +21,35 @@ load_dotenv()
 
 DEBUG=False
 
+import django_heroku
+import dj_database_url
+from django.core.management.utils import get_random_secret_key
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+<<<<<<< HEAD
 FRONTEND_DIR = os.path.join(BASE_DIR.parent, 'frontend')
 
+=======
+>>>>>>> heroku/main
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-+4wp2ylz*wj37&37f^$04!^9*!$fg$bo^my@4j!!el6*2ysljd'
+SECRET_KEY = os.environ.get('SECRET_KEY', 'changeme_123')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG_DJANGO', False),
+DEBUG = bool(os.environ.get('DEBUG_DJANGO', False))
 
 ADMIN_ENABLED = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = [os.environ.get('ALLOWED_HOSTS', '127.0.0.1'),]
 
 # Application definition
 
 INSTALLED_APPS = [
+    'whitenoise.runserver_nostatic',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -74,7 +82,11 @@ ROOT_URLCONF = 'appconfig.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
+<<<<<<< HEAD
         'DIRS': [os.path.join(FRONTEND_DIR, 'dist')],
+=======
+        'DIRS': [os.path.join(BASE_DIR, "staticfiles")],
+>>>>>>> heroku/main
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -89,10 +101,10 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'appconfig.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
+<<<<<<< HEAD
 DATABASE_URL_PARSE = urlparse.urlparse(os.getenv('DATABASE_URL'))
 
 DATABASES = {
@@ -109,6 +121,10 @@ DATABASES = {
     }
 }
 
+=======
+DATABASES = {}
+DATABASES['default'] = dj_database_url.config(conn_max_age=600)
+>>>>>>> heroku/main
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -151,10 +167,17 @@ STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 STATICFILES_DIRS = [
+<<<<<<< HEAD
     os.path.join(FRONTEND_DIR, 'dist'),
 ]
 
 STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
+=======
+  # Tell Django where to look for React's static files (css, js)
+  os.path.join(BASE_DIR, "staticfiles/assets"),
+]
+
+>>>>>>> heroku/main
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
@@ -176,5 +199,15 @@ REST_FRAMEWORK = {
     ],
 }
 
+<<<<<<< HEAD
 CORS_ALLOW_ALL_ORIGINS = True
 django_heroku.settings(locals())
+=======
+CORS_ORIGIN_WHITELIST = [
+    os.environ.get('CORS_ORIGIN_WHITELIST', 'http://localhost:3000'),
+]
+
+django_heroku.settings(locals())
+options = DATABASES['default'].get('OPTIONS', {})
+options.pop('sslmode', None)
+>>>>>>> heroku/main

@@ -14,7 +14,11 @@ router = routers.DefaultRouter()
 router.register(r'modulo', ModuloViewSet, basename="ModuloModel")
 router.register(r'aula', AulaViewSet, basename="AulaModel")
 
+<<<<<<< HEAD
 def index(request):
+=======
+def react(request):
+>>>>>>> heroku/main
     return render(request, 'index.html')
 
 urlpatterns = [
@@ -22,5 +26,10 @@ urlpatterns = [
     path('api/auth/login', TokenObtainPairView.as_view(), name="token_obtain_pair"),
     path('api/auth/refresh-token', TokenRefreshView.as_view(), name="token_refresh"),
     path('ping', include('ping.urls')),
+<<<<<<< HEAD
     re_path(r'.*', index)
+=======
+    re_path(r"^$", react),
+    re_path(r"^(?:.*)/?$", react),
+>>>>>>> heroku/main
 ]

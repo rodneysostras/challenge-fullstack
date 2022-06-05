@@ -12,7 +12,7 @@ WORKDIR /dev/app/frontend
 
 COPY package.json .
 
-RUN yarn global add vercel vite && yarn install
+RUN yarn global add vite && yarn install
 
 COPY ../ /dev/app/frontend/
 
