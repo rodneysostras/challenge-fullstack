@@ -38,7 +38,7 @@ export default function HomePage() {
                 </Box>
                 { signed && (
                     <Box image={ImgExit} title="Logout">
-                        <a href="#" onClick={() => logout()} className={ `button ${ !signed && 'disabled' }`}>SAIR</a>
+                        <a href="/" onClick={() => logout()} className={ `button ${ !signed && 'disabled' }`}>SAIR</a>
                     </Box>
                 )}
                 { !signed && (

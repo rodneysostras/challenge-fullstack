@@ -11,11 +11,19 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 import os
 from pathlib import Path
-import string
+
+import urllib.parse as urlparse
+
+from dotenv import load_dotenv
+
+load_dotenv()
+
+DEBUG=True
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+FRONTEND_DIR = os.path.join(BASE_DIR.parent, 'frontend')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
@@ -50,6 +58,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -64,7 +73,7 @@ ROOT_URLCONF = 'appconfig.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(FRONTEND_DIR, 'dist')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -83,14 +92,19 @@ WSGI_APPLICATION = 'appconfig.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
+DATABASE_URL_PARSE = urlparse.urlparse(os.getenv('DATABASE_URL'))
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.environ.get('MYSQL_DATABASE', 'verzeldb'),
-        'USER': os.environ.get('MYSQL_USER', 'verzel'),
-        'PASSWORD': os.environ.get('MYSQL_PASSWORD', '1234'),
-        'HOST': os.environ.get('MYSQL_DATABASE_HOST', 'verzeldb'),
-        'PORT': os.environ.get('MYSQL_DATABASE_PORT', 3306),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': DATABASE_URL_PARSE.path[1:],
+        'USER': DATABASE_URL_PARSE.username,
+        'PASSWORD': DATABASE_URL_PARSE.password,
+        'HOST': DATABASE_URL_PARSE.hostname,
+        'PORT': DATABASE_URL_PARSE.port,
+        'OPTIONS': {
+            'sslmode': None,
+        }
     }
 }
 
@@ -132,6 +146,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = 'static/'
+
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+
+STATICFILES_DIRS = [
+    os.path.join(FRONTEND_DIR, 'dist'),
+]
+
+STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field

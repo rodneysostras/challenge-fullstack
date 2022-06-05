@@ -16,7 +16,7 @@ export default function HeaderLayout() {
                 </a>
                 <nav className='menu'>
                     <ul>
-                        { signed && (<li><a href="#" onClick={() => logout()}>LOGOUT</a></li>) }
+                        { signed && (<li><a href="/" onClick={() => logout()}>LOGOUT</a></li>) }
                         { !signed && (<li><LoginModal /></li>) }
                     </ul>
                 </nav>

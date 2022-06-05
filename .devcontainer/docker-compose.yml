@@ -1,0 +1,38 @@
+version: "3.8"
+
+services:
+  verzelapp:
+    container_name: verzelapp-dev
+    build:
+      context: ..
+      dockerfile: .devcontainer/Dockerfile
+      args:
+        VARIANT: 3-bullseye
+        NODE_VERSION: "lts/*"
+    stdin_open: true
+    command: sleep infinity
+    ports:
+      - "3000:3000"
+      - "8000:8000"
+    volumes:
+      - ../frontend/node_modules
+      - ..:/workspace
+    depends_on:
+      - verzeldb
+
+  verzeldb:
+    container_name: verzeldb-dev
+    image: postgres:13.6-alpine
+    restart: unless-stopped
+    volumes:
+      - postgres-data:/data/postgres
+    environment:
+      PGDATA: "/data/postgres"
+      POSTGRES_USER: ${POSTGRES_USER:-verzel}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-1234}
+      POSTGRES_DB: ${POSTGRES_PASSWORD:-verzeldb}
+    ports:
+      - "5432:5432"
+
+volumes:
+  postgres-data:
