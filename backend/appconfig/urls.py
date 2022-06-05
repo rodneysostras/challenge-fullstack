@@ -22,7 +22,5 @@ urlpatterns = [
     path('api/auth/login', TokenObtainPairView.as_view(), name="token_obtain_pair"),
     path('api/auth/refresh-token', TokenRefreshView.as_view(), name="token_refresh"),
     path('ping', include('ping.urls')),
-    path('', index)
+    re_path(r'.*', index)
 ]
-
-handler404 = 'error.views.e404View'
