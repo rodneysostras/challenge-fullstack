@@ -1,16 +1,16 @@
 <h1>
-    <img src=".github/assets/img/icon-readme.png" alt="" height="60em" align="left"/>Challenge Verzel
+    <img src=".github/assets/img/icon-readme.png" alt="" height="60em" align="left"/>Challenge Fullstack
 </h1>
 <div align="center">
     <img src="https://img.shields.io/badge/react-20232a?style=for-the-badge&logo=react&logoColor=61DAFB" />
     <img src="https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=white" />
     <!-- <img src="https://img.shields.io/badge/%F0%9F%9A%A7%20EM%20CONTRU%C3%87%C3%83O%20-90%25-brightgreen?style=for-the-badge" /> -->
-    <img src="https://shields.io/github/deployments/rodneysostras/challenge-fullstack-verzel/production?style=for-the-badge&logo=appveyor" />
-    <img src="https://img.shields.io/website-up-down-green-red/https/challenge-fullstack-verzel.rodneysostras.me?style=for-the-badge"/>
-    <img src="https://img.shields.io/github/repo-size/rodneysostras/challenge-fullstack-verzel?style=for-the-badge"/>
-    <img src="https://img.shields.io/github/languages/count/rodneysostras/challenge-fullstack-verzel?style=for-the-badge"/>
-    <img src="https://img.shields.io/github/issues/rodneysostras/challenge-fullstack-verzel?style=for-the-badge"/>
-    <!-- <img src="https://img.shields.io/github/license/rodneysostras/challenge-fullstack-verzel?style=for-the-badge"/> -->
+    <img src="https://shields.io/github/deployments/rodneysostras/challenge-fullstack/production?style=for-the-badge&logo=appveyor" />
+    <img src="https://img.shields.io/website-up-down-green-red/https/challenge-fullstack.rodneysostras.me?style=for-the-badge"/>
+    <img src="https://img.shields.io/github/repo-size/rodneysostras/challenge-fullstack?style=for-the-badge"/>
+    <img src="https://img.shields.io/github/languages/count/rodneysostras/challenge-fullstack?style=for-the-badge"/>
+    <img src="https://img.shields.io/github/issues/rodneysostras/challenge-fullstack?style=for-the-badge"/>
+    <!-- <img src="https://img.shields.io/github/license/rodneysostras/challenge-fullstack?style=for-the-badge"/> -->
 </div>
 
 <br />
@@ -38,13 +38,13 @@
     <em>
         Sistema de catálogo de aulas por módulo<br />
         <b>DEMO: </b>
-        <a href="https://challenge-verzel.rodneysostras.me/">VERCEL</a>
+        <a href="https://challenge-fullstack.rodneysostras.me/">VERCEL</a>
     </em>
 </div>
 
 <br />
 
-🏆 Challenge Verzel - Uma aplicação Web desenvolvida em ReactJS e Django sendo um sistema de catálogo de aulas por módulo.
+🏆 Challenge - Uma aplicação Web desenvolvida em ReactJS e Django sendo um sistema de catálogo de aulas por módulo.
 
 Aplicação foi desenvolvida com back-end em Python + Django funcionando como Rest API para Front-end em Javascript + ReactJS.
 
@@ -54,7 +54,7 @@ Sua base de dados persistente e o MySQL um banco de dados relacional.
 <p dir="auto">Uma challenge realizada para testar meus conhecimentos tendo que comprir os requisitos abaixo.</p>
 </blockquote>
 
-> Branch da entrega '[challenge](https://github.com/rodneysostras/challenge-fullstack-verzel/tree/challenge)'
+> Branch da entrega '[challenge](https://github.com/rodneysostras/challenge-fullstack/tree/challenge)'
 
 ## 🎯 Requisitos
 
@@ -85,9 +85,9 @@ Sua base de dados persistente e o MySQL um banco de dados relacional.
 
 ```bash
 # Clone este repositório
-$ git clone git@github.com:rodneysostras/challenge-fullstack-verzel.git
+$ git clone git@github.com:rodneysostras/challenge-fullstack.git
 # Acesse a pasta do projeto no seu terminal/cmd
-$ cd challenge-fullstack-verzel
+$ cd challenge-fullstack
 # Instale as dependências front-end
 $ cd frontend
 $ yarn install
@@ -96,7 +96,7 @@ $ cd backend
 $ pip install -r requirements.txt
 ```
 
-> Sobre instalação de dependências e execução da aplicação acesse a respectiva pasta **[BACKEND](https://github.com/rodneysostras/challenge-fullstack-verzel/tree/main/backend)** ou **[FRONTEND](https://github.com/rodneysostras/challenge-fullstack-verzel/tree/main/frontend)** para mais informações
+> Sobre instalação de dependências e execução da aplicação acesse a respectiva pasta **[BACKEND](https://github.com/rodneysostras/challenge-fullstack/tree/main/backend)** ou **[FRONTEND](https://github.com/rodneysostras/challenge-fullstack/tree/main/frontend)** para mais informações
 
 
 > Na pasta `.devcontainer` possui as configurações para subir o container docker do ambiente de desenvolvimento deste projeto \
@@ -111,7 +111,7 @@ $ pip install -r requirements.txt
 -   **[Axios](https://github.com/axios/axios)** • Cliente HTTP leve semelhante à API Fetch nativa do JavaScript.
 -   **[Vercel](https://vercel.com/)** • Plataforma voltada para a hospedagem de aplicações.
 
-> Para saber dependências do front-end veja o arquivo [package.json](https://github.com/rodneysostras/challenge-fullstack-verzel/blob/main/frontend/package.json) na pasta `frontend`
+> Para saber dependências do front-end veja o arquivo [package.json](https://github.com/rodneysostras/challenge-fullstack/blob/main/frontend/package.json) na pasta `frontend`
 
 ## 🦸 Autor
 
